@@ -359,7 +359,7 @@ class Image(pyvips.VipsObject, metaclass=ImageType):
             :class:`.Error`
 
         """
-        pointer = vips_lib.vips_foreign_find_load_buffer(data, len(data))
+        pointer = vips_lib.vips_foreign_find_load_buffer(ffi.from_buffer(data), len(data))
         if pointer == ffi.NULL:
             raise Error('unable to load from buffer')
         name = _to_string(pointer)
